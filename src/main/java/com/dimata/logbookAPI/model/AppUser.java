@@ -24,10 +24,10 @@ public class AppUser implements Serializable {
     private String Email;
     private String Description;
     private Timestamp regDate;
-    private LocalDateTime updateDate;
-    private Integer userStatus;
-    private LocalDateTime lastLoginDate;
-    private String lastLoginIp;
+//    private LocalDateTime updateDate;
+//    private Integer userStatus;
+//    private LocalDateTime lastLoginDate;
+//    private String lastLoginIp;
     private Integer userType;
     private Long employeeId;
 

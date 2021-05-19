@@ -4,6 +4,7 @@ package com.dimata.logbookAPI.controller;
 import com.dimata.logbookAPI.model.AppUser;
 import com.dimata.logbookAPI.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,7 +15,9 @@ public class AppUserController {
     private AppUserService appUserService;
 
     @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
     public AppUser create (@RequestBody AppUser appUser){
+
         return appUserService.create(appUser);
     }
 
