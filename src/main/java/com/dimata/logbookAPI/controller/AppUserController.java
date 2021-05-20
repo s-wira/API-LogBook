@@ -2,8 +2,10 @@ package com.dimata.logbookAPI.controller;
 
 
 import com.dimata.logbookAPI.dto.ResponseData;
+import com.dimata.logbookAPI.dto.model.AppUserDTO;
 import com.dimata.logbookAPI.model.AppUser;
 import com.dimata.logbookAPI.service.AppUserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,24 +24,27 @@ public class AppUserController {
     @Autowired
     private AppUserService appUserService;
 
+    @Autowired
+    private ModelMapper modelMapper;
 
-    @PostMapping
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public ResponseEntity<ResponseData<AppUser>> create (@Valid @RequestBody AppUser appUser, Errors errors){
-        ResponseData<AppUser> responseData = new ResponseData<>();
-        if(errors.hasErrors()){
-            for(ObjectError error : errors.getAllErrors()){
-                responseData.getMessage().add(error.getDefaultMessage());
-            }
-            responseData.setStatus(false);
-            responseData.setPayload(null);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
-        }
-        responseData.setStatus(true);
-        responseData.setPayload(appUserService.create(appUser));
-        responseData.setMessage(Collections.singletonList("Berhasil Menyimpan Data"));
-        return ResponseEntity.ok(responseData);
-    }
+    //Tanpa menggunakan tambahan DTO dan belum model Mapper
+//    @PostMapping
+//    @ResponseStatus(value = HttpStatus.CREATED)
+//    public ResponseEntity<ResponseData<AppUser>> create (@Valid @RequestBody AppUser appUser, Errors errors){
+//        ResponseData<AppUser> responseData = new ResponseData<>();
+//        if(errors.hasErrors()){
+//            for(ObjectError error : errors.getAllErrors()){
+//                responseData.getMessage().add(error.getDefaultMessage());
+//            }
+//            responseData.setStatus(false);
+//            responseData.setPayload(null);
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+//        }
+//        responseData.setStatus(true);
+//        responseData.setPayload(appUserService.create(appUser));
+//        responseData.setMessage(Collections.singletonList("Berhasil Menyimpan Data"));
+//        return ResponseEntity.ok(responseData);
+//    }
 
 //    FindAll Data User Pada Database
     @GetMapping
@@ -69,6 +74,35 @@ public class AppUserController {
         return appUserService.findUserId(id);
     }
 
+
+    //    Cuman Exmaple Untuk penggunaan DTO user model mapper
+    @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ResponseEntity<ResponseData<AppUser>> createUseDTO (@Valid @RequestBody AppUserDTO appUserDTO, Errors errors){
+        ResponseData<AppUser> responseData = new ResponseData<>();
+        if(errors.hasErrors()){
+            for(ObjectError error : errors.getAllErrors()){
+                responseData.getMessage().add(error.getDefaultMessage());
+            }
+            responseData.setStatus(false);
+            responseData.setPayload(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
+        //deklarasikan awal untuk create user manual tanpa model mapper
+//        AppUser appUser = new AppUser();
+//        appUser.setLoginId(appUserDTO.getLoginId());
+//        appUser.setFullName(appUserDTO.getFullName());
+//        appUser.setEmail(appUserDTO.getEmail());
+//        appUser.setPassword(appUserDTO.getPassword());
+
+        // use model library mapper untuk sebuah data
+        AppUser appUser = modelMapper.map(appUserDTO, AppUser.class);
+
+        responseData.setStatus(true);
+        responseData.setPayload(appUserService.create(appUser));
+        responseData.setMessage(Collections.singletonList("Berhasil Menyimpan Data"));
+        return ResponseEntity.ok(responseData);
+    }
 
 
 

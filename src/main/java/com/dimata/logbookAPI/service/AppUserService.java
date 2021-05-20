@@ -21,7 +21,9 @@ public class AppUserService {
 //    inget harus sesuai dengan penulisan code seberapa dia panjanga charcternya
     public AppUser create(AppUser appUser){
         appUser.setUserId(GenerateOID.generateOID());
-        appUser.setEmployeeId(123L);
+        appUser.setUserStatus(0);
+        appUser.setEmployeeId(0L);
+        appUser.setUserType(1);
         return appUserRepo.save(appUser);
     }
 
