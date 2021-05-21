@@ -1,9 +1,11 @@
 package com.dimata.logbookAPI.controller;
 
 
+import com.dimata.logbookAPI.dto.LoginUserDTO;
 import com.dimata.logbookAPI.dto.ResponseData;
 import com.dimata.logbookAPI.dto.model.AppUserDTO;
 import com.dimata.logbookAPI.model.AppUser;
+import com.dimata.logbookAPI.repository.AppUserRepo;
 import com.dimata.logbookAPI.service.AppUserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class AppUserController {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private AppUserRepo appUserRepo;
 
     //Tanpa menggunakan tambahan DTO dan belum model Mapper
 //    @PostMapping
@@ -104,6 +109,53 @@ public class AppUserController {
         return ResponseEntity.ok(responseData);
     }
 
+
+//    @PostMapping("/login")
+//    public ResponseEntity<ResponseData<AppUser>> loginUser (@RequestBody LoginUserDTO loginUserDTO){
+//        ResponseData<AppUser> responseData = new ResponseData<>();
+//        List<AppUser> login = appUserRepo.findByLoginIdAndPassword(loginUserDTO.getLoginId(),loginUserDTO.getPassword());
+//        if (login.isEmpty()){
+//            responseData.setMessage(Collections.singletonList("Username atau Password anda Salah!!"));
+//            responseData.setPayload(null);
+//            responseData.setStatus(false);
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+//        }
+////        AppUser appUser = modelMapper.map(loginUserDTO, AppUser.class);
+//
+//        responseData.setStatus(true);
+//        responseData.setMessage(Collections.singletonList("Anda Berhasil Login"));
+//        responseData.setPayload(appUserService.login(loginUserDTO.getLoginId(),loginUserDTO.getPassword()));
+//        return ResponseEntity.ok(responseData);
+//
+//
+//    }
+
+    @PostMapping("/login")
+    public AppUser loginUser (@RequestBody LoginUserDTO loginUserDTO){
+        return appUserService.login(loginUserDTO.getLoginId(), loginUserDTO.getPassword());
+
+    }
+
+//    @PostMapping("/login")
+//    public ResponseEntity<ResponseData<AppUser>> loginUser (@RequestBody LoginUserDTO loginUserDTO){
+//        ResponseData<AppUser> responseData = new ResponseData<>();
+//        List<AppUser> login = appUserRepo.findByLoginIdAndPassword(loginUserDTO.getLoginId(),loginUserDTO.getPassword());
+//        if (login.isEmpty()){
+//            responseData.setMessage(Collections.singletonList("Username atau Password anda Salah!!"));
+//            responseData.setPayload(null);
+//            responseData.setStatus(false);
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+//        }
+////        AppUser appUser = modelMapper.map(loginUserDTO, AppUser.class);
+//
+//        responseData.setStatus(true);
+//        responseData.setMessage(Collections.singletonList("Anda Berhasil Login"));
+//        responseData.setPayload(appUserService.login(loginUserDTO.getLoginId(),loginUserDTO.getPassword()));
+//        return ResponseEntity.ok(responseData);
+//
+//
+//
+//    }
 
 
 }

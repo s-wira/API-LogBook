@@ -54,5 +54,22 @@ public class AppUserService {
     }
 
 
+    public AppUser login (String loginId, String password){
+
+        return appUserRepo.findByLoginIdAndPassword(loginId, password);
+
+    }
+
+//    public List<AppUser> login (String loginId, String password){
+//        List<AppUser> login = appUserRepo.findByLoginIdAndPassword(loginId,password);
+//        if(!login.isEmpty()){
+//            return null;
+//        }
+//
+//        return appUserRepo.findByLoginIdAndPassword(loginId, password);
+//
+//    }
+
+
 
 }

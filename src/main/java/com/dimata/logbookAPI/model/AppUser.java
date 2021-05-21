@@ -22,7 +22,7 @@ public class AppUser implements Serializable {
     @NotEmpty(message = "Username Harus diisi")
     private String loginId;
     @NotEmpty(message = "Password Harus diisi")
-    private String Password;
+    private String password;
     @NotEmpty(message = "Fullname Harus diisi")
     private String fullName;
     @NotEmpty(message = "Email Harus diisi")
