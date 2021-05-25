@@ -14,13 +14,14 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "log_report")
 public class LogReport {
+
     @Id
     private Long logReportId;
     private Integer logNumber;
     private String logDesc;
     private LocalDateTime reportDate;
     private LocalDateTime recordDate;
-    private Integer status;
+    private Integer Status;
     private Long rptTypeId;
     private Long rptCategoryId;
     private Long pasalKhususId;

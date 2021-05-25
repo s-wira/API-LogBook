@@ -22,10 +22,13 @@ public class LogReportService {
         LocalDateTime localDateTime = LocalDateTime.now();
         logReport.setReportDate(localDateTime);
         logReport.setRecordDate(localDateTime);
-
+        logReport.setDueDatetime(localDateTime);
         logReport.setLogReportId(GenerateOID.generateOID());
-
         return logReportRepo.save(logReport);
+    }
+
+    public Iterable<LogReport> findAll(){
+        return logReportRepo.findAll();
     }
 
 

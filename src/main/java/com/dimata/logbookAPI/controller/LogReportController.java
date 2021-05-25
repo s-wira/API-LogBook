@@ -60,6 +60,11 @@ public class LogReportController {
 
     }
 
+    @GetMapping("log-report")
+    public Iterable<LogReport>findAllReport(){
+        return logReportService.findAll();
+    }
+
 
 
 

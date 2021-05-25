@@ -1,8 +1,11 @@
 package com.dimata.logbookAPI.dto.model;
 
+import lombok.Data;
+
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
+@Data
 public class LogReportDTO {
 
     private Long logReportId;
@@ -23,5 +26,8 @@ public class LogReportDTO {
     private Long customerId;
     private Integer priority;
     private Integer information;
+
+
+
 
 }
