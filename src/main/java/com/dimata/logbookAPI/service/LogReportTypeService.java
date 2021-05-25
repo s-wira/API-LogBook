@@ -20,6 +20,10 @@ public class LogReportTypeService {
         return logReportTypeRepo.findAll();
     }
 
+    public LogReportType getIdReportType(String typeName){
+        return logReportTypeRepo.findByTypeName(typeName);
+    }
+
 
 
 

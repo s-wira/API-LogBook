@@ -56,8 +56,9 @@ public class AppUserService {
 
 
     public AppUser login (String loginId, String password) {
-
-        return appUserRepo.findByLoginIdAndPassword(loginId, password);
+        AppUser appUser = appUserRepo.findByLoginIdAndPassword(loginId, password);
+        appUser.setUserStatus(1);
+        return appUser;
 
     }
 

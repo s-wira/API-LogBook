@@ -20,16 +20,28 @@ public class LogReportService {
 
     public LogReport create(LogReport logReport){
         LocalDateTime localDateTime = LocalDateTime.now();
+        logReport.setLogReportId(GenerateOID.generateOID());
         logReport.setReportDate(localDateTime);
         logReport.setRecordDate(localDateTime);
         logReport.setDueDatetime(localDateTime);
-        logReport.setLogReportId(GenerateOID.generateOID());
+        logReport.setPasalKhususId(0L);
+        logReport.setPasalUmumId(0L);
+        logReport.setPriority(0);
+        logReport.setStatus(0);
+        logReport.setCustomerId(null);
+        logReport.setRecordByUserId(0L);
+
         return logReportRepo.save(logReport);
     }
 
     public Iterable<LogReport> findAll(){
         return logReportRepo.findAll();
     }
+
+
+//    public Integer countStatus(Integer id){
+//        return logReportRepo.countByStatus(id);
+//    }
 
 
 }

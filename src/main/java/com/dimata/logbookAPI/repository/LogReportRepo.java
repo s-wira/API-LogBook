@@ -4,4 +4,6 @@ import com.dimata.logbookAPI.model.LogReport;
 import org.springframework.data.repository.CrudRepository;
 
 public interface LogReportRepo extends CrudRepository<LogReport,Long> {
+//    Integer countByStatus (Integer Status);
+
 }

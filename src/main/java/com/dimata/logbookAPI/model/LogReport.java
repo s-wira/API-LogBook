@@ -24,6 +24,7 @@ public class LogReport {
     private Integer Status;
     private Long rptTypeId;
     private Long rptCategoryId;
+    private Long pasalUmumId;
     private Long pasalKhususId;
     private Long reportByUserId;
     private Long recordByUserId;

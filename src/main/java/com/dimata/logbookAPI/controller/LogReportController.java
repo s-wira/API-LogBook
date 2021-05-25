@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.logging.LogRecord;
 
 @RestController
-@RequestMapping("/api/logreport")
+@RequestMapping("/api/log-report")
 public class LogReportController {
 
     @Autowired
@@ -37,13 +37,13 @@ public class LogReportController {
     private LogReportService logReportService;
 
 
-    @GetMapping
+    @GetMapping("report-all")
     public Iterable<LogReportType> findAll(){
         return logReportTypeService.findAll();
     }
 
 //    Get data User yang digunakan untuk add Tiket
-    @GetMapping("app_user")
+    @GetMapping("app-user")
     public Iterable<AppUser> getDataAllUser(){
         return appUserService.findAll();
     }
@@ -60,11 +60,15 @@ public class LogReportController {
 
     }
 
-    @GetMapping("log-report")
+    @GetMapping
     public Iterable<LogReport>findAllReport(){
         return logReportService.findAll();
     }
 
+    @PostMapping("id-report-type")
+    public LogReportType getIdType(@RequestBody LogReportType logReportType){
+        return logReportTypeService.getIdReportType(logReportType.getTypeName());
+    }
 
 
 

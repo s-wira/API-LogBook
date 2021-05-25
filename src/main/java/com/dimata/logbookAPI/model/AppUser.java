@@ -27,7 +27,7 @@ public class AppUser implements Serializable {
     private String fullName;
     @NotEmpty(message = "Email Harus diisi")
     private String Email;
-    private String Description;
+    private String description;
     private Timestamp regDate;
     private LocalDateTime updateDate;
     private Integer userStatus;
