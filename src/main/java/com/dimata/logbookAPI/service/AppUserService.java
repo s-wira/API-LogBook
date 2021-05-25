@@ -5,6 +5,7 @@ import com.dimata.logbookAPI.model.AppUser;
 import com.dimata.logbookAPI.repository.AppUserRepo;
 import com.dimata.logbookAPI.utility.GenerateOID;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -54,7 +55,7 @@ public class AppUserService {
     }
 
 
-    public AppUser login (String loginId, String password){
+    public AppUser login (String loginId, String password) {
 
         return appUserRepo.findByLoginIdAndPassword(loginId, password);
 

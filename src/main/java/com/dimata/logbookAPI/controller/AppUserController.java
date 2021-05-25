@@ -27,10 +27,11 @@ public class AppUserController {
     private AppUserService appUserService;
 
     @Autowired
-    private ModelMapper modelMapper;
+    private AppUserRepo appUserRepo;
 
     @Autowired
-    private AppUserRepo appUserRepo;
+    private ModelMapper modelMapper;
+
 
     //Tanpa menggunakan tambahan DTO dan belum model Mapper
 //    @PostMapping
@@ -58,7 +59,7 @@ public class AppUserController {
     }
 
 //    Cari berdasarkan Username atau loginId
-    @GetMapping("/{username}")
+    @GetMapping("findByUsername/{username}")
     public List<AppUser> findByLoginID (@PathVariable("username") String username){
         return appUserService.findByLoginId(username);
     }
@@ -131,7 +132,7 @@ public class AppUserController {
 //    }
 
     @PostMapping("/login")
-    public AppUser loginUser (@RequestBody LoginUserDTO loginUserDTO){
+    public AppUser loginUser (@RequestBody LoginUserDTO loginUserDTO) {
         return appUserService.login(loginUserDTO.getLoginId(), loginUserDTO.getPassword());
 
     }
