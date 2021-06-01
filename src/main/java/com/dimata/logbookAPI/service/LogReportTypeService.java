@@ -24,10 +24,4 @@ public class LogReportTypeService {
         return logReportTypeRepo.findByTypeName(typeName);
     }
 
-
-
-
-
-
-
 }

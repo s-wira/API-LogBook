@@ -137,6 +137,12 @@ public class AppUserController {
 
     }
 
+    @PostMapping("/findByUserId")
+    public AppUser findByUserId (@RequestBody AppUserDTO appUserDTO) {
+        return appUserService.findUserId(appUserDTO.getUserId());
+    }
+
+
 //    @PostMapping("/login")
 //    public ResponseEntity<ResponseData<AppUser>> loginUser (@RequestBody LoginUserDTO loginUserDTO){
 //        ResponseData<AppUser> responseData = new ResponseData<>();

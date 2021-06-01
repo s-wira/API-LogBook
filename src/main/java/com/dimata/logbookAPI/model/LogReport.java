@@ -21,7 +21,7 @@ public class LogReport {
     private String logDesc;
     private LocalDateTime reportDate;
     private LocalDateTime recordDate;
-    private Integer Status;
+    private Integer status;
     private Long rptTypeId;
     private Long rptCategoryId;
     private Long pasalUmumId;

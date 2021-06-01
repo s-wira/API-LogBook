@@ -28,6 +28,7 @@ public class AppUserService {
         return appUserRepo.save(appUser);
     }
 
+
     public Iterable<AppUser> findAll(){
         return appUserRepo.findAll();
     }
