@@ -3,10 +3,7 @@ package com.dimata.logbookAPI.controller;
 import com.dimata.logbookAPI.dto.LoginUserDTO;
 import com.dimata.logbookAPI.dto.ResponseData;
 import com.dimata.logbookAPI.dto.model.LogReportDTO;
-import com.dimata.logbookAPI.model.AppUser;
-import com.dimata.logbookAPI.model.LogCategory;
-import com.dimata.logbookAPI.model.LogReport;
-import com.dimata.logbookAPI.model.LogReportType;
+import com.dimata.logbookAPI.model.*;
 import com.dimata.logbookAPI.repository.AppUserRepo;
 import com.dimata.logbookAPI.repository.LogReportTypeRepo;
 import com.dimata.logbookAPI.service.AppUserService;
@@ -78,5 +75,11 @@ public class LogReportController {
         return logReportService.findLogCategory(logCategory.getRptTypeId());
 
     }
+
+    @GetMapping("/chapter")
+    public Iterable<LogPasalUmum> findAllPasal(){
+        return logReportService.findAllLogPasal();
+    }
+
 
 }

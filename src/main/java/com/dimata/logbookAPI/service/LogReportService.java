@@ -1,14 +1,15 @@
 package com.dimata.logbookAPI.service;
 
 import com.dimata.logbookAPI.model.LogCategory;
+import com.dimata.logbookAPI.model.LogPasalUmum;
 import com.dimata.logbookAPI.model.LogReport;
 import com.dimata.logbookAPI.repository.LogCategoryRepo;
+import com.dimata.logbookAPI.repository.LogPasalUmumRepo;
 import com.dimata.logbookAPI.repository.LogReportRepo;
-import com.dimata.logbookAPI.repository.LogReportTypeRepo;
 import com.dimata.logbookAPI.utility.GenerateOID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,6 +24,9 @@ public class LogReportService {
 
     @Autowired
     private LogCategoryRepo logCategoryRepo;
+
+    @Autowired
+    private LogPasalUmumRepo logPasalUmumRepo;
 
     public LogReport create(LogReport logReport){
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -56,6 +60,10 @@ public class LogReportService {
 
     public List<LogCategory> findLogCategory(Long rptType){
         return logCategoryRepo.findByRptTypeId(rptType);
+    }
+
+    public Iterable<LogPasalUmum> findAllLogPasal (){
+        return logPasalUmumRepo.findAll();
     }
 
 
