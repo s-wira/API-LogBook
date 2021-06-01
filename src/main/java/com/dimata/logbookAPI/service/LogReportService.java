@@ -1,6 +1,8 @@
 package com.dimata.logbookAPI.service;
 
+import com.dimata.logbookAPI.model.LogCategory;
 import com.dimata.logbookAPI.model.LogReport;
+import com.dimata.logbookAPI.repository.LogCategoryRepo;
 import com.dimata.logbookAPI.repository.LogReportRepo;
 import com.dimata.logbookAPI.repository.LogReportTypeRepo;
 import com.dimata.logbookAPI.utility.GenerateOID;
@@ -18,6 +20,9 @@ public class LogReportService {
 
     @Autowired
     private LogReportRepo logReportRepo;
+
+    @Autowired
+    private LogCategoryRepo logCategoryRepo;
 
     public LogReport create(LogReport logReport){
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -46,6 +51,11 @@ public class LogReportService {
 
     public List<LogReport> findAllStatus(Integer status){
         return logReportRepo.findByStatus(status);
+    }
+
+
+    public List<LogCategory> findLogCategory(Long rptType){
+        return logCategoryRepo.findByRptTypeId(rptType);
     }
 
 

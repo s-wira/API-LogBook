@@ -1,8 +1,10 @@
 package com.dimata.logbookAPI.controller;
 
+import com.dimata.logbookAPI.dto.LoginUserDTO;
 import com.dimata.logbookAPI.dto.ResponseData;
 import com.dimata.logbookAPI.dto.model.LogReportDTO;
 import com.dimata.logbookAPI.model.AppUser;
+import com.dimata.logbookAPI.model.LogCategory;
 import com.dimata.logbookAPI.model.LogReport;
 import com.dimata.logbookAPI.model.LogReportType;
 import com.dimata.logbookAPI.repository.AppUserRepo;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.List;
 import java.util.logging.LogRecord;
 
 @RestController
@@ -70,8 +73,10 @@ public class LogReportController {
         return logReportTypeService.getIdReportType(logReportType.getTypeName());
     }
 
+    @PostMapping("/category")
+    public List<LogCategory> getLogCategory (@RequestBody LogCategory logCategory) {
+        return logReportService.findLogCategory(logCategory.getRptTypeId());
 
-
-
+    }
 
 }
