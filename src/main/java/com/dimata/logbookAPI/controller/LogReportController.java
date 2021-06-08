@@ -48,6 +48,7 @@ public class LogReportController {
         return appUserService.findAll();
     }
 
+    //
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<ResponseData<LogReport>> createLog(@RequestBody LogReportDTO logReportDTO){
