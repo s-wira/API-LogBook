@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "app_user")
+@Table(name = "log_user")
 public class AppUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,7 +33,7 @@ public class AppUser implements Serializable {
     private Integer userStatus;
     private LocalDateTime lastLoginDate;
     private String lastLoginIp;
-    private Integer userType;
+//    private Integer userType;
     private Long employeeId;
 
 }

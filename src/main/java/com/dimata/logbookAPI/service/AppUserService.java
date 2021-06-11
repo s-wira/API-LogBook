@@ -24,7 +24,7 @@ public class AppUserService {
         appUser.setUserId(GenerateOID.generateOID());
         appUser.setUserStatus(0);
         appUser.setEmployeeId(0L);
-        appUser.setUserType(1);
+//        appUser.setUserType(1);
         return appUserRepo.save(appUser);
     }
 
