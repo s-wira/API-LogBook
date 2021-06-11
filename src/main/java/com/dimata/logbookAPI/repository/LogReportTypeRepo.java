@@ -5,4 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface LogReportTypeRepo extends CrudRepository<LogReportType, Long> {
     LogReportType findByTypeName (String typeName);
+
 }

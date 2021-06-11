@@ -14,6 +14,6 @@ public class LogReportType {
     @Id
     private Long rptTypeId;
     private String typeName;
-
+    private String statusRpt;
 
 }

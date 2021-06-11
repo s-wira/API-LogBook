@@ -55,6 +55,7 @@ public class LogReportController {
         ResponseData<LogReport> responseData = new ResponseData<>();
 
         LogReport logReport = modelMapper.map(logReportDTO, LogReport.class);
+        responseData.setStatus(true);
         responseData.setPayload(logReportService.create(logReport));
         responseData.setMessage(Collections.singletonList("Berhasil Menyimpan Data"));
         return ResponseEntity.ok(responseData);
@@ -81,6 +82,18 @@ public class LogReportController {
     public Iterable<LogPasalUmum> findAllPasal(){
         return logReportService.findAllLogPasal();
     }
+
+//    @PostMapping("/count-status")
+//    public Long countStatus (@RequestBody LogReportDTO logReportDTO){
+//        return logReportService.countStatusRpt(logReportDTO.getStatusRpt());
+//    }
+
+    @GetMapping("count/{status}")
+    public Long countStatus (@PathVariable("status") String status){
+        return logReportService.countStatusRpt(status);
+    }
+
+
 
 
 }

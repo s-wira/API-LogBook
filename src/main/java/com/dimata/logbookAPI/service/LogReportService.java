@@ -40,7 +40,6 @@ public class LogReportService {
         logReport.setStatus(0);
         logReport.setCustomerId(null);
         logReport.setRecordByUserId(0L);
-
         return logReportRepo.save(logReport);
     }
 
@@ -64,6 +63,10 @@ public class LogReportService {
 
     public Iterable<LogPasalUmum> findAllLogPasal (){
         return logPasalUmumRepo.findAll();
+    }
+
+    public Long countStatusRpt (String status){
+        return logReportRepo.countByStatusRpt(status);
     }
 
 

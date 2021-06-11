@@ -34,6 +34,6 @@ public class LogReport {
     private LocalDateTime realFinishDatetime;
     private Long customerId;
     private Integer priority;
-    private Integer information;
+    private String statusRpt;
 
 }
