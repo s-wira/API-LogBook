@@ -88,10 +88,6 @@ public class LogReportController {
 //        return logReportService.countStatusRpt(logReportDTO.getStatusRpt());
 //    }
 
-    @GetMapping("count/{status}")
-    public Long countStatus (@PathVariable("status") String status){
-        return logReportService.countStatusRpt(status);
-    }
 
 
 

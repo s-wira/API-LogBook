@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -35,7 +36,6 @@ public class LogReportService {
         logReport.setRecordDate(localDateTime);
         logReport.setDueDatetime(localDateTime);
         logReport.setPasalKhususId(0L);
-        logReport.setPasalUmumId(0L);
         logReport.setPriority(0);
         logReport.setStatus(0);
         logReport.setCustomerId(null);
@@ -69,5 +69,16 @@ public class LogReportService {
         return logReportRepo.countByStatusRpt(status);
     }
 
+    public List<LogReport> findStatusRpt (String report){
+        return logReportRepo.findByStatusRpt(report);
+    }
+
+    public LogReport findLogReportId (Long id){
+        Optional<LogReport> logReport = logReportRepo.findById(id);
+        if (!logReport.isPresent()){
+            return null;
+        }
+        return logReport.get();
+    }
 
 }

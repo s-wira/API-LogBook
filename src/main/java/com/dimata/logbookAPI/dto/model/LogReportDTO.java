@@ -17,6 +17,7 @@ public class LogReportDTO {
     private Long rptTypeId;
     private Long rptCategoryId;
     private Long pasalKhususId;
+    private Long pasalUmumId;
     private Long reportByUserId;
     private Long recordByUserId;
     private Long picUserId;

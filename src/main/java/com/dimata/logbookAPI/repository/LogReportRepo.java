@@ -10,4 +10,7 @@ import java.util.List;
 public interface LogReportRepo extends CrudRepository<LogReport,Long> {
     List<LogReport>findByStatus(Integer status);
     long countByStatusRpt (String status);
+    List<LogReport> findByStatusRpt (String statusRpt);
+
+
 }

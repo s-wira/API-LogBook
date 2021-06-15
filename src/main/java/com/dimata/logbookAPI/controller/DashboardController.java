@@ -3,10 +3,7 @@ package com.dimata.logbookAPI.controller;
 import com.dimata.logbookAPI.model.LogReport;
 import com.dimata.logbookAPI.service.LogReportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +22,16 @@ public class DashboardController {
     @GetMapping("/status/{id}")
     public List<LogReport> findByStatus (@PathVariable("id") Integer status){
         return logReportService.findAllStatus(status);
+    }
+
+    @GetMapping("/status-report/{report}")
+    public Iterable<LogReport> findStatusReport(@PathVariable("report") String report){
+        return logReportService.findStatusRpt(report);
+    }
+
+    @PostMapping("/detail/tiket")
+    public LogReport findByReportId (@RequestBody LogReport logReport){
+        return logReportService.findLogReportId(logReport.getLogReportId());
     }
 
 

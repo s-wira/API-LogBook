@@ -32,7 +32,6 @@ public class AppUserController {
     @Autowired
     private ModelMapper modelMapper;
 
-
     //Tanpa menggunakan tambahan DTO dan belum model Mapper
 //    @PostMapping
 //    @ResponseStatus(value = HttpStatus.CREATED)
@@ -159,7 +158,6 @@ public class AppUserController {
 //        responseData.setMessage(Collections.singletonList("Anda Berhasil Login"));
 //        responseData.setPayload(appUserService.login(loginUserDTO.getLoginId(),loginUserDTO.getPassword()));
 //        return ResponseEntity.ok(responseData);
-//
 //
 //
 //    }
