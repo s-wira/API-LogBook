@@ -14,11 +14,6 @@ public class DashboardController {
     @Autowired
     private LogReportService logReportService;
 
-//    @GetMapping("/{id}")
-//    public Long countInProgres(@PathVariable("id")Integer id){
-//        return logReportService.countStatus(id);
-//    }
-
     @GetMapping("/status/{id}")
     public List<LogReport> findByStatus (@PathVariable("id") Integer status){
         return logReportService.findAllStatus(status);
@@ -34,5 +29,9 @@ public class DashboardController {
         return logReportService.findLogReportId(logReport.getLogReportId());
     }
 
+    @GetMapping("/count-status/{status}")
+    public Long countStatus (@PathVariable("status") String status){
+        return logReportService.countStatusRpt(status);
+    }
 
 }

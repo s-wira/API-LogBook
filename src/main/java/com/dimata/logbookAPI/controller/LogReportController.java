@@ -88,7 +88,15 @@ public class LogReportController {
 //        return logReportService.countStatusRpt(logReportDTO.getStatusRpt());
 //    }
 
+    @GetMapping("/status-report/{report}")
+    public Iterable<LogReport> findStatusReport(@PathVariable("report") String report){
+        return logReportService.findStatusRpt(report);
+    }
 
+    @GetMapping("/status/{id}")
+    public List<LogReport> findByStatus (@PathVariable("id") Integer status){
+        return logReportService.findAllStatus(status);
+    }
 
 
 
