@@ -12,5 +12,7 @@ public interface LogReportRepo extends CrudRepository<LogReport,Long> {
     long countByStatusRpt (String status);
     List<LogReport> findByStatusRpt (String statusRpt);
 
+    LogReport findByLogNumber (Integer logNumber);
+
 
 }

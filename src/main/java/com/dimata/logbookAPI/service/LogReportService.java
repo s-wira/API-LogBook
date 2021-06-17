@@ -81,4 +81,10 @@ public class LogReportService {
         return logReport.get();
     }
 
+
+    public LogReport findByLogReportNumber (Integer number){
+        return logReportRepo.findByLogNumber(number);
+    }
+
+
 }

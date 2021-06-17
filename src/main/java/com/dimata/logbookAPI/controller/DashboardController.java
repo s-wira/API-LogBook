@@ -24,14 +24,20 @@ public class DashboardController {
         return logReportService.findStatusRpt(report);
     }
 
-    @PostMapping("/detail/tiket")
-    public LogReport findByReportId (@RequestBody LogReport logReport){
-        return logReportService.findLogReportId(logReport.getLogReportId());
-    }
+    // user ID dari tiket tersebut
+//    @PostMapping("/detail/tiket")
+//    public LogReport findByReportId (@RequestBody LogReport logReport){
+//        return logReportService.findLogReportId(logReport.getLogReportId());
+//    }
 
     @GetMapping("/count-status/{status}")
     public Long countStatus (@PathVariable("status") String status){
         return logReportService.countStatusRpt(status);
+    }
+
+    @PostMapping("/detail/tiket")
+    public LogReport findByReportId (@RequestBody LogReport logReport){
+        return logReportService.findByLogReportNumber(logReport.getLogNumber());
     }
 
 }
