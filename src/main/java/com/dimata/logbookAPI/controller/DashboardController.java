@@ -40,4 +40,7 @@ public class DashboardController {
         return logReportService.findByLogReportNumber(logReport.getLogNumber());
     }
 
+
+
+
 }
