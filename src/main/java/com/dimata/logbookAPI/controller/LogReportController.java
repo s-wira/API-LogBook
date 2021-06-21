@@ -1,11 +1,8 @@
 package com.dimata.logbookAPI.controller;
 
-import com.dimata.logbookAPI.dto.LoginUserDTO;
-import com.dimata.logbookAPI.dto.ResponseData;
+import com.dimata.logbookAPI.dto.response.ResponseData;
 import com.dimata.logbookAPI.dto.model.LogReportDTO;
 import com.dimata.logbookAPI.model.*;
-import com.dimata.logbookAPI.repository.AppUserRepo;
-import com.dimata.logbookAPI.repository.LogReportTypeRepo;
 import com.dimata.logbookAPI.service.AppUserService;
 import com.dimata.logbookAPI.service.LogReportService;
 import com.dimata.logbookAPI.service.LogReportTypeService;
@@ -15,10 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.LogRecord;
 
 @RestController
 @RequestMapping("/api/log-report")
@@ -92,10 +87,6 @@ public class LogReportController {
         return logReportService.findStatusRpt(report);
     }
 
-    @GetMapping("/status/{id}")
-    public List<LogReport> findByStatus (@PathVariable("id") Integer status){
-        return logReportService.findAllStatus(status);
-    }
 
 
 

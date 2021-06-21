@@ -2,7 +2,7 @@ package com.dimata.logbookAPI.controller;
 
 
 import com.dimata.logbookAPI.dto.LoginUserDTO;
-import com.dimata.logbookAPI.dto.ResponseData;
+import com.dimata.logbookAPI.dto.response.ResponseData;
 import com.dimata.logbookAPI.dto.model.AppUserDTO;
 import com.dimata.logbookAPI.model.AppUser;
 import com.dimata.logbookAPI.model.HrCompany;
@@ -165,24 +165,6 @@ public class AppUserController {
     }
 
 
-//    @PostMapping("/login")
-//    public ResponseEntity<ResponseData<AppUser>> loginUser (@RequestBody LoginUserDTO loginUserDTO){
-//        ResponseData<AppUser> responseData = new ResponseData<>();
-//        List<AppUser> login = appUserRepo.findByLoginIdAndPassword(loginUserDTO.getLoginId(),loginUserDTO.getPassword());
-//        if (login.isEmpty()){
-//            responseData.setMessage(Collections.singletonList("Username atau Password anda Salah!!"));
-//            responseData.setPayload(null);
-//            responseData.setStatus(false);
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
-//        }
-////        AppUser appUser = modelMapper.map(loginUserDTO, AppUser.class);
-//
-//        responseData.setStatus(true);
-//        responseData.setMessage(Collections.singletonList("Anda Berhasil Login"));
-//        responseData.setPayload(appUserService.login(loginUserDTO.getLoginId(),loginUserDTO.getPassword()));
-//        return ResponseEntity.ok(responseData);
-//
-//    }
 
 
 }

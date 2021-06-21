@@ -1,15 +1,12 @@
 package com.dimata.logbookAPI.service;
 
-import com.dimata.logbookAPI.dto.ResponseData;
 import com.dimata.logbookAPI.model.AppUser;
-import com.dimata.logbookAPI.model.HrCompany;
 import com.dimata.logbookAPI.repository.AppUserRepo;
 import com.dimata.logbookAPI.repository.HrCompanyRepo;
 import com.dimata.logbookAPI.utility.GenerateOID;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.transaction.Transactional;
 import java.util.List;

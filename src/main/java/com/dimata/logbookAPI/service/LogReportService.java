@@ -1,9 +1,6 @@
 package com.dimata.logbookAPI.service;
 
-import com.dimata.logbookAPI.model.HrCompany;
-import com.dimata.logbookAPI.model.LogCategory;
-import com.dimata.logbookAPI.model.LogPasalUmum;
-import com.dimata.logbookAPI.model.LogReport;
+import com.dimata.logbookAPI.model.*;
 import com.dimata.logbookAPI.repository.HrCompanyRepo;
 import com.dimata.logbookAPI.repository.LogCategoryRepo;
 import com.dimata.logbookAPI.repository.LogPasalUmumRepo;
@@ -57,7 +54,8 @@ public class LogReportService {
 //        return logReportRepo.countByStatus(id);
 //    }
 
-    public List<LogReport> findAllStatus(Integer status){
+    public List<LogReport> findAllStatus(Integer status, AppUser appUser){
+
         return logReportRepo.findByStatus(status);
     }
 

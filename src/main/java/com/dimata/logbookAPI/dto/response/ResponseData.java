@@ -1,4 +1,4 @@
-package com.dimata.logbookAPI.dto;
+package com.dimata.logbookAPI.dto.response;
 
 import lombok.Data;
 
