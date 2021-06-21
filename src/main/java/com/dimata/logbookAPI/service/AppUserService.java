@@ -26,10 +26,6 @@ public class AppUserService {
 
 //    inget harus sesuai dengan penulisan code seberapa dia panjanga charcternya
     public AppUser create(AppUser appUser){
-        Optional<HrCompany> hrCompany = hrCompanyRepo.findByCompanyCode(appUser.getCompanyCode());
-        if (!hrCompany.isPresent()){
-            return null;
-        }
 
         appUser.setUserId(GenerateOID.generateOID());
         appUser.setUserStatus(0);

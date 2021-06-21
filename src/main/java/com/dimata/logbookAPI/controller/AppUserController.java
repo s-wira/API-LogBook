@@ -5,7 +5,9 @@ import com.dimata.logbookAPI.dto.LoginUserDTO;
 import com.dimata.logbookAPI.dto.ResponseData;
 import com.dimata.logbookAPI.dto.model.AppUserDTO;
 import com.dimata.logbookAPI.model.AppUser;
+import com.dimata.logbookAPI.model.HrCompany;
 import com.dimata.logbookAPI.repository.AppUserRepo;
+import com.dimata.logbookAPI.repository.HrCompanyRepo;
 import com.dimata.logbookAPI.service.AppUserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
@@ -28,6 +31,9 @@ public class AppUserController {
 
     @Autowired
     private AppUserRepo appUserRepo;
+
+    @Autowired
+    private HrCompanyRepo hrCompanyRepo;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -101,7 +107,23 @@ public class AppUserController {
 //        appUser.setPassword(appUserDTO.getPassword());
 
         // use model library mapper untuk sebuah data
-        AppUser appUser = modelMapper.map(appUserDTO, AppUser.class);
+
+        Optional<HrCompany> hrCompany = hrCompanyRepo.findByCompanyCode(appUserDTO.getCompanyCode());
+        if (!hrCompany.isPresent()){
+            responseData.setStatus(false);
+            responseData.setPayload(null);
+            responseData.setMessage(Collections.singletonList("Company Code Anda Salah"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
+
+
+//        AppUser appUser = modelMapper.map(appUserDTO, AppUser.class);
+        AppUser appUser = new AppUser();
+        appUser.setLoginId(appUserDTO.getLoginId());
+        appUser.setFullName(appUserDTO.getFullName());
+        appUser.setEmail(appUserDTO.getEmail());
+        appUser.setPassword(appUserDTO.getPassword());
+        appUser.setCompanyId(hrCompany.get().getCompanyId());
 
         responseData.setStatus(true);
         

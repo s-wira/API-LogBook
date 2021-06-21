@@ -30,5 +30,6 @@ public class AppUserDTO {
     private Integer userType;
     private Long employeeId;
     private String companyCode;
+    private Long companyId;
 
 }
