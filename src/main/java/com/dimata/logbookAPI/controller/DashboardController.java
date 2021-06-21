@@ -35,6 +35,7 @@ public class DashboardController {
         return logReportService.countStatusRpt(status);
     }
 
+
     @PostMapping("/detail/tiket")
     public LogReport findByReportId (@RequestBody LogReport logReport){
         return logReportService.findByLogReportNumber(logReport.getLogNumber());

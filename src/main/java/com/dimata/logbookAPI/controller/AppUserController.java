@@ -104,6 +104,7 @@ public class AppUserController {
         AppUser appUser = modelMapper.map(appUserDTO, AppUser.class);
 
         responseData.setStatus(true);
+        
         responseData.setPayload(appUserService.create(appUser));
         responseData.setMessage(Collections.singletonList("Berhasil Menyimpan Data"));
         return ResponseEntity.ok(responseData);
@@ -158,7 +159,6 @@ public class AppUserController {
 //        responseData.setMessage(Collections.singletonList("Anda Berhasil Login"));
 //        responseData.setPayload(appUserService.login(loginUserDTO.getLoginId(),loginUserDTO.getPassword()));
 //        return ResponseEntity.ok(responseData);
-//
 //
 //    }
 

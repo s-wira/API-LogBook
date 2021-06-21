@@ -36,4 +36,5 @@ public class LogReport {
     private Integer priority;
     private String statusRpt;
 
+
 }

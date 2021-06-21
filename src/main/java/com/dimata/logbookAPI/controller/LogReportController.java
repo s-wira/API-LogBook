@@ -75,7 +75,6 @@ public class LogReportController {
     @PostMapping("/category")
     public List<LogCategory> getLogCategory (@RequestBody LogCategory logCategory) {
         return logReportService.findLogCategory(logCategory.getRptTypeId());
-
     }
 
     @GetMapping("/chapter")

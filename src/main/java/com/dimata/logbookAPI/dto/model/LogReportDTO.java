@@ -28,6 +28,7 @@ public class LogReportDTO {
     private Integer priority;
     private Integer information;
     private String statusRpt;
+    private String companyCode;
 
 
 

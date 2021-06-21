@@ -2,7 +2,9 @@ package com.dimata.logbookAPI.service;
 
 import com.dimata.logbookAPI.dto.ResponseData;
 import com.dimata.logbookAPI.model.AppUser;
+import com.dimata.logbookAPI.model.HrCompany;
 import com.dimata.logbookAPI.repository.AppUserRepo;
+import com.dimata.logbookAPI.repository.HrCompanyRepo;
 import com.dimata.logbookAPI.utility.GenerateOID;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,8 +21,16 @@ public class AppUserService {
     @Autowired
     private AppUserRepo appUserRepo;
 
+    @Autowired
+    private HrCompanyRepo hrCompanyRepo;
+
 //    inget harus sesuai dengan penulisan code seberapa dia panjanga charcternya
     public AppUser create(AppUser appUser){
+        Optional<HrCompany> hrCompany = hrCompanyRepo.findByCompanyCode(appUser.getCompanyCode());
+        if (!hrCompany.isPresent()){
+            return null;
+        }
+
         appUser.setUserId(GenerateOID.generateOID());
         appUser.setUserStatus(0);
         appUser.setEmployeeId(0L);

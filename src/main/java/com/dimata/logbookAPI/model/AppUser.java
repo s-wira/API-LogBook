@@ -35,5 +35,6 @@ public class AppUser implements Serializable {
     private String lastLoginIp;
 //    private Integer userType;
     private Long employeeId;
+    private String companyCode;
 
 }

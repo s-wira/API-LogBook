@@ -29,5 +29,6 @@ public class AppUserDTO {
 //    private String lastLoginIp;
     private Integer userType;
     private Long employeeId;
+    private String companyCode;
 
 }

@@ -1,8 +1,10 @@
 package com.dimata.logbookAPI.service;
 
+import com.dimata.logbookAPI.model.HrCompany;
 import com.dimata.logbookAPI.model.LogCategory;
 import com.dimata.logbookAPI.model.LogPasalUmum;
 import com.dimata.logbookAPI.model.LogReport;
+import com.dimata.logbookAPI.repository.HrCompanyRepo;
 import com.dimata.logbookAPI.repository.LogCategoryRepo;
 import com.dimata.logbookAPI.repository.LogPasalUmumRepo;
 import com.dimata.logbookAPI.repository.LogReportRepo;
@@ -28,6 +30,9 @@ public class LogReportService {
 
     @Autowired
     private LogPasalUmumRepo logPasalUmumRepo;
+
+    @Autowired
+    private HrCompanyRepo hrCompanyRepo;
 
     public LogReport create(LogReport logReport){
         LocalDateTime localDateTime = LocalDateTime.now();
