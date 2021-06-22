@@ -10,13 +10,23 @@ import java.util.Optional;
 
 public interface LogReportRepo extends CrudRepository<LogReport,Long> {
     List<LogReport>findByStatus(Integer status);
+
     long countByStatusRpt (String status);
+
+    long countByStatusRptAndReportByUserId (String status, Long userId);
+
+    long countByStatusRptAndCompanyId (String status, Long companyId);
+
+
     List<LogReport> findByStatusRpt (String statusRpt);
+
     LogReport findByLogNumber (Integer logNumber);
 
     List<LogReport> findByStatusAndReportByUserId (Integer status,Long reportByUserId);
 
     List<LogReport> findByStatusAndCompanyId (Integer status, Long companyId);
+
+
 
 
 }

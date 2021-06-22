@@ -68,9 +68,14 @@ public class LogReportService {
         return logPasalUmumRepo.findAll();
     }
 
-    public Long countStatusRpt (String status){
-        return logReportRepo.countByStatusRpt(status);
+    public Long countStatusRptMyTiket (String status, LogReport logReport){
+        return logReportRepo.countByStatusRptAndReportByUserId(status, logReport.getReportByUserId());
     }
+
+    public Long countStatusRptMyCompany (String status, LogReport logReport){
+        return logReportRepo.countByStatusRptAndCompanyId(status, logReport.getCompanyId());
+    }
+
 
     public List<LogReport> findStatusRpt (String report){
         return logReportRepo.findByStatusRpt(report);
