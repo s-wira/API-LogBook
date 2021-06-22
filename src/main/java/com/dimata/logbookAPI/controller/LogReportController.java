@@ -7,6 +7,7 @@ import com.dimata.logbookAPI.model.*;
 import com.dimata.logbookAPI.repository.AppUserRepo;
 import com.dimata.logbookAPI.repository.LogReportRepo;
 import com.dimata.logbookAPI.service.AppUserService;
+import com.dimata.logbookAPI.service.LogNotificationService;
 import com.dimata.logbookAPI.service.LogReportService;
 import com.dimata.logbookAPI.service.LogReportTypeService;
 import com.dimata.logbookAPI.utility.GenerateOID;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/log-report")
@@ -40,6 +42,9 @@ public class LogReportController {
 
     @Autowired
     private AppUserRepo appUserRepo;
+
+    @Autowired
+    private LogNotificationService logNotificationService;
 
 
     @GetMapping("report-all")
@@ -118,6 +123,7 @@ public class LogReportController {
     }
 
 
+//
 //    @PostMapping("add")
 //    @ResponseStatus(value = HttpStatus.CREATED)
 //    public ResponseEntity<ResponseData<LogReport>> addTiket (@Valid  @RequestBody LogReportDTO logReportDTO, Errors errors){
@@ -136,12 +142,26 @@ public class LogReportController {
 //
 //        Long reportId = GenerateOID.generateOID();
 //
+//        Optional<AppUser> user = appUserRepo.findById(logReportDTO.getReportByUserId());
+//
 //        logReport.setLogReportId(reportId);
-//        logReport.setLogDesc();
+//        logReport.setLogDesc(logReportDTO.getLogDesc());
+//        logReport.setRptTypeId(logReportDTO.getRptTypeId());
+//        logReport.setPasalUmumId(logReportDTO.getPasalUmumId());
+//        logReport.setReportByUserId(logReportDTO.getReportByUserId());
+//        logReport.setPicUserId(logReportDTO.getPicUserId());
+//        logReport.setStatusRpt(logReportDTO.getStatusRpt());
+//        logReport.setCompanyId(user.get().getCompanyId());
 //
 //        logNotification.setReportId(reportId);
 //        logNotification.setUserId(logReportDTO.getPicUserId());
-//        logNotification.setLogNotification();
+//        logNotification.setLogNotification("You Have Report by %s" + user.get().getFullName());
+//
+//        logReportService.create(logReport);
+//
+//        logNotificationService.
+//
+//
 //
 //
 //
