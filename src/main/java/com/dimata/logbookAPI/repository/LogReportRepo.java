@@ -16,5 +16,7 @@ public interface LogReportRepo extends CrudRepository<LogReport,Long> {
 
     List<LogReport> findByStatusAndReportByUserId (Integer status,Long reportByUserId);
 
+    List<LogReport> findByStatusAndCompanyId (Integer status, Long companyId);
+
 
 }

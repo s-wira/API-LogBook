@@ -29,6 +29,7 @@ public class LogReportDTO {
     private Integer information;
     private String statusRpt;
     private String companyCode;
+    private Long companyId;
 
 
 

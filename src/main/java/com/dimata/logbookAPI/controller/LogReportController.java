@@ -2,7 +2,10 @@ package com.dimata.logbookAPI.controller;
 
 import com.dimata.logbookAPI.dto.response.ResponseData;
 import com.dimata.logbookAPI.dto.model.LogReportDTO;
+import com.dimata.logbookAPI.dto.response.ResponseDataList;
 import com.dimata.logbookAPI.model.*;
+import com.dimata.logbookAPI.repository.AppUserRepo;
+import com.dimata.logbookAPI.repository.LogReportRepo;
 import com.dimata.logbookAPI.service.AppUserService;
 import com.dimata.logbookAPI.service.LogReportService;
 import com.dimata.logbookAPI.service.LogReportTypeService;
@@ -31,6 +34,9 @@ public class LogReportController {
     @Autowired
     private LogReportService logReportService;
 
+    @Autowired
+    private AppUserRepo appUserRepo;
+
 
     @GetMapping("report-all")
     public Iterable<LogReportType> findAll(){
@@ -48,7 +54,6 @@ public class LogReportController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<ResponseData<LogReport>> createLog(@RequestBody LogReportDTO logReportDTO){
         ResponseData<LogReport> responseData = new ResponseData<>();
-
         LogReport logReport = modelMapper.map(logReportDTO, LogReport.class);
         responseData.setStatus(true);
         responseData.setPayload(logReportService.create(logReport));
@@ -87,6 +92,26 @@ public class LogReportController {
         return logReportService.findStatusRpt(report);
     }
 
+
+    /// =============== > Start <===============//
+
+    //Get Data PIC User Untuk Add Tiket
+    @GetMapping("/get-pic")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ResponseEntity<ResponseDataList<AppUser>> getPicUser (){
+        ResponseDataList<AppUser> responseDataList = new ResponseDataList<>();
+        List<AppUser> picUser = appUserRepo.findByEmployeeId(1L);
+        if (picUser.isEmpty()){
+            responseDataList.setStatus(false);
+            responseDataList.setPayload(null);
+            responseDataList.setMessage(Collections.singletonList("Belum Ada Data Tiket yang Anda Tambahkan!"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseDataList);
+        }
+        responseDataList.setStatus(true);
+        responseDataList.setMessage(Collections.singletonList("Berhasil Mengambil Data Tiket"));
+        responseDataList.setPayload(picUser);
+        return ResponseEntity.ok(responseDataList);
+    }
 
 
 

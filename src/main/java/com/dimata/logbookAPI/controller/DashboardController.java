@@ -23,15 +23,9 @@ public class DashboardController {
 
     @Autowired
     private LogReportRepo logReportRepo;
-
-//    @GetMapping("/status/{id}")
-//    public List<LogReport> findByStatus (@PathVariable("id") Integer status, @RequestBody AppUser appUser){
-//        return logReportService.findAllStatus(status, appUser);
-//    }
-
-
-    // Data Yang Berhasil di Ambil Dalam Bentuk Arrya List Data Tiket Seorang tesebut
-    @PostMapping("/status/{id}")
+    
+    // My Tiket Data Yang Berhasil di Ambil Dalam Bentuk Arrya List Data Tiket Seorang tesebut
+    @PostMapping("/status/my-tiket/{id}")
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<ResponseDataList<LogReport>> getMyTiket (@PathVariable("id") Integer status, @RequestBody LogReportDTO userId){
         ResponseDataList<LogReport> responseData = new ResponseDataList<>();
@@ -49,18 +43,30 @@ public class DashboardController {
 
     }
 
+    // MyCompany Tiket Data Yang Berhasil di Ambil Dalam Bentuk Arrya List Data Tiket Seorang tesebut
+    @PostMapping("/status/company-tiket/{id}")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ResponseEntity<ResponseDataList<LogReport>> getMyCompanyTiket (@PathVariable("id") Integer status, @RequestBody LogReportDTO userId){
+        ResponseDataList<LogReport> responseData = new ResponseDataList<>();
+        List<LogReport> logReport = logReportRepo.findByStatusAndCompanyId(status,userId.getCompanyId());
+        if (logReport.isEmpty()){
+            responseData.setStatus(false);
+            responseData.setPayload(null);
+            responseData.setMessage(Collections.singletonList("Belum Ada Data Tiket yang Pada Company Anda!"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
+        responseData.setStatus(true);
+        responseData.setMessage(Collections.singletonList("Berhasil Mengambil Data Tiket"));
+        responseData.setPayload(logReport);
+        return ResponseEntity.ok(responseData);
+
+    }
 
 
     @GetMapping("/status-report/{report}")
     public Iterable<LogReport> findStatusReport(@PathVariable("report") String report){
         return logReportService.findStatusRpt(report);
     }
-
-    // user ID dari tiket tersebut
-//    @PostMapping("/detail/tiket")
-//    public LogReport findByReportId (@RequestBody LogReport logReport){
-//        return logReportService.findLogReportId(logReport.getLogReportId());
-//    }
 
     @GetMapping("/count-status/{status}")
     public Long countStatus (@PathVariable("status") String status){

@@ -10,4 +10,6 @@ public interface AppUserRepo extends CrudRepository<AppUser, Long> {
 //    List<AppUser> findByLoginIdAndPassword (String loginId, String password);
     AppUser findByLoginIdAndPassword (String loginId, String password);
 
+    List<AppUser> findByEmployeeId (Long employeeid);
+
 }

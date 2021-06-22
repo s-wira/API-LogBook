@@ -35,6 +35,7 @@ public class LogReport {
     private Long customerId;
     private Integer priority;
     private String statusRpt;
+    private Long companyId;
 
 
 }
