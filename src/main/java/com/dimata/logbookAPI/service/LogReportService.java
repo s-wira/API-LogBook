@@ -50,10 +50,6 @@ public class LogReportService {
     }
 
 
-//    public long countStatus(Integer id){
-//        return logReportRepo.countByStatus(id);
-//    }
-
     public List<LogReport> findAllStatus(Integer status, AppUser appUser){
 
         return logReportRepo.findByStatus(status);

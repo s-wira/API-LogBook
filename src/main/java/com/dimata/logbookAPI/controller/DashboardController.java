@@ -6,6 +6,7 @@ import com.dimata.logbookAPI.dto.response.ResponseDataList;
 import com.dimata.logbookAPI.model.LogReport;
 import com.dimata.logbookAPI.repository.LogReportRepo;
 import com.dimata.logbookAPI.service.LogReportService;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,6 +56,7 @@ public class DashboardController {
             responseData.setMessage(Collections.singletonList("Belum Ada Data Tiket yang Pada Company Anda!"));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
+
         responseData.setStatus(true);
         responseData.setMessage(Collections.singletonList("Berhasil Mengambil Data Tiket"));
         responseData.setPayload(logReport);
@@ -75,12 +77,51 @@ public class DashboardController {
     }
 
 
+    @PostMapping("/status-report/my-tiket/{report}")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ResponseEntity<ResponseDataList<LogReport>> getDetailStatusMyTiket (@PathVariable("report") String report, @RequestBody LogReport logReport){
+        ResponseDataList<LogReport> responseData = new ResponseDataList<>();
+        List<LogReport> logReports = logReportRepo.findByStatusRptAndReportByUserId(report,logReport.getReportByUserId());
+        if (logReports.isEmpty()){
+            responseData.setStatus(false);
+            responseData.setPayload(null);
+            responseData.setMessage(Collections.singletonList("Belum Ada Data Tiket yang di Tambahkan!"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
 
+        responseData.setStatus(true);
+        responseData.setMessage(Collections.singletonList("Berhasil Mengambil Data Tiket"));
+        responseData.setPayload(logReports);
+        return ResponseEntity.ok(responseData);
 
-    @GetMapping("/status-report/{report}")
-    public Iterable<LogReport> findStatusReport(@PathVariable("report") String report){
-        return logReportService.findStatusRpt(report);
     }
+
+    @PostMapping("/status-report/company-tiket/{report}")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ResponseEntity<ResponseDataList<LogReport>> getDetailStatusCompanyTiket (@PathVariable("report") String report, @RequestBody LogReport logReport){
+        ResponseDataList<LogReport> responseData = new ResponseDataList<>();
+        List<LogReport> logReports = logReportRepo.findByStatusRptAndCompanyId(report,logReport.getCompanyId());
+        if (logReports.isEmpty()){
+            responseData.setStatus(false);
+            responseData.setPayload(null);
+            responseData.setMessage(Collections.singletonList("Belum Ada Data Tiket yang di Tambahkan!"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
+
+        responseData.setStatus(true);
+        responseData.setMessage(Collections.singletonList("Berhasil Mengambil Data Tiket"));
+        responseData.setPayload(logReports);
+        return ResponseEntity.ok(responseData);
+
+    }
+
+
+
+
+//    @GetMapping("/status-report/{report}")
+//    public Iterable<LogReport> findStatusReport(@PathVariable("report") String report){
+//        return logReportService.findStatusRpt(report);
+//    }
 
 
     @PostMapping("/detail/tiket")
