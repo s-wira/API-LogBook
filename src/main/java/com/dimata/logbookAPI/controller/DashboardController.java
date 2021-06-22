@@ -63,6 +63,8 @@ public class DashboardController {
     }
 
 
+
+
     @GetMapping("/status-report/{report}")
     public Iterable<LogReport> findStatusReport(@PathVariable("report") String report){
         return logReportService.findStatusRpt(report);
