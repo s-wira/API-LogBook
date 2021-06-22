@@ -65,13 +65,13 @@ public class DashboardController {
     }
 
     //==============> count status my tiket <==============
-    @GetMapping("/count-status-my-tiket/{status}")
+    @PostMapping("/count-status-my-tiket/{status}")
     public Long countStatus (@PathVariable("status") String status, @RequestBody LogReport logReport){
         return logReportService.countStatusRptMyTiket (status, logReport);
     }
 
     //==============> count status my company status <==============
-    @GetMapping("/count-status-my-company/{status}")
+    @PostMapping("/count-status-my-company/{status}")
     public Long countStatusMyCompany (@PathVariable("status") String status, @RequestBody LogReport logReport){
         return logReportService.countStatusRptMyCompany (status, logReport);
     }
