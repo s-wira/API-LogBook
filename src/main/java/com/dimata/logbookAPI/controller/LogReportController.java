@@ -9,12 +9,16 @@ import com.dimata.logbookAPI.repository.LogReportRepo;
 import com.dimata.logbookAPI.service.AppUserService;
 import com.dimata.logbookAPI.service.LogReportService;
 import com.dimata.logbookAPI.service.LogReportTypeService;
+import com.dimata.logbookAPI.utility.GenerateOID;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
 
@@ -112,6 +116,37 @@ public class LogReportController {
         responseDataList.setPayload(picUser);
         return ResponseEntity.ok(responseDataList);
     }
+
+
+//    @PostMapping("add")
+//    @ResponseStatus(value = HttpStatus.CREATED)
+//    public ResponseEntity<ResponseData<LogReport>> addTiket (@Valid  @RequestBody LogReportDTO logReportDTO, Errors errors){
+//        ResponseData<LogReport> responseData = new ResponseData<>();
+//        if(errors.hasErrors()){
+//            for(ObjectError error : errors.getAllErrors()){
+//                responseData.getMessage().add(error.getDefaultMessage());
+//            }
+//            responseData.setStatus(false);
+//            responseData.setPayload(null);
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+//        }
+//
+//        LogNotification logNotification = new LogNotification();
+//        LogReport logReport = new LogReport();
+//
+//        Long reportId = GenerateOID.generateOID();
+//
+//        logReport.setLogReportId(reportId);
+//        logReport.setLogDesc();
+//
+//        logNotification.setReportId(reportId);
+//        logNotification.setUserId(logReportDTO.getPicUserId());
+//        logNotification.setLogNotification();
+//
+//
+//
+//    }
+//
 
 
 

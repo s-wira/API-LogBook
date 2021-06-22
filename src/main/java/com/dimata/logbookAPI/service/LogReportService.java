@@ -32,6 +32,7 @@ public class LogReportService {
     private HrCompanyRepo hrCompanyRepo;
 
     public LogReport create(LogReport logReport){
+
         LocalDateTime localDateTime = LocalDateTime.now();
         logReport.setLogReportId(GenerateOID.generateOID());
         logReport.setReportDate(localDateTime);
