@@ -34,7 +34,7 @@ public class LogReportService {
     public LogReport create(LogReport logReport){
 
         LocalDateTime localDateTime = LocalDateTime.now();
-        logReport.setLogReportId(GenerateOID.generateOID());
+        logReport.setLogReportId(logReport.getLogReportId());
         logReport.setReportDate(localDateTime);
         logReport.setRecordDate(localDateTime);
         logReport.setDueDatetime(localDateTime);

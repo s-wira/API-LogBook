@@ -123,47 +123,48 @@ public class LogReportController {
     }
 
 
-//
-//    @PostMapping("add")
-//    @ResponseStatus(value = HttpStatus.CREATED)
-//    public ResponseEntity<ResponseData<LogReport>> addTiket (@Valid  @RequestBody LogReportDTO logReportDTO, Errors errors){
-//        ResponseData<LogReport> responseData = new ResponseData<>();
-//        if(errors.hasErrors()){
-//            for(ObjectError error : errors.getAllErrors()){
-//                responseData.getMessage().add(error.getDefaultMessage());
-//            }
-//            responseData.setStatus(false);
-//            responseData.setPayload(null);
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
-//        }
-//
-//        LogNotification logNotification = new LogNotification();
-//        LogReport logReport = new LogReport();
-//
-//        Long reportId = GenerateOID.generateOID();
-//
-//        Optional<AppUser> user = appUserRepo.findById(logReportDTO.getReportByUserId());
-//
-//        logReport.setLogReportId(reportId);
-//        logReport.setLogDesc(logReportDTO.getLogDesc());
-//        logReport.setRptTypeId(logReportDTO.getRptTypeId());
-//        logReport.setPasalUmumId(logReportDTO.getPasalUmumId());
-//        logReport.setReportByUserId(logReportDTO.getReportByUserId());
-//        logReport.setPicUserId(logReportDTO.getPicUserId());
-//        logReport.setStatusRpt(logReportDTO.getStatusRpt());
-//        logReport.setCompanyId(user.get().getCompanyId());
-//
-//        logNotification.setReportId(reportId);
-//        logNotification.setUserId(logReportDTO.getPicUserId());
-//        logNotification.setLogNotification("You Have Report by %s" + user.get().getFullName());
-//
-//        logReportService.create(logReport);
-//
-//        logNotificationService.
-//
-//
-//    }
-//
+    // Add tiket With Notification User
+    @PostMapping("add")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ResponseEntity<ResponseData<LogReport>> addTiket (@Valid  @RequestBody LogReportDTO logReportDTO, Errors errors){
+        ResponseData<LogReport> responseData = new ResponseData<>();
+        if(errors.hasErrors()){
+            for(ObjectError error : errors.getAllErrors()){
+                responseData.getMessage().add(error.getDefaultMessage());
+            }
+            responseData.setStatus(false);
+            responseData.setPayload(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
+
+        LogNotification logNotification = new LogNotification();
+        LogReport logReport = new LogReport();
+
+        Long reportId = GenerateOID.generateOID();
+
+        Optional<AppUser> user = appUserRepo.findById(logReportDTO.getReportByUserId());
+
+        logReport.setLogReportId(reportId);
+        logReport.setLogDesc(logReportDTO.getLogDesc());
+        logReport.setRptTypeId(logReportDTO.getRptTypeId());
+        logReport.setPasalUmumId(logReportDTO.getPasalUmumId());
+        logReport.setReportByUserId(logReportDTO.getReportByUserId());
+        logReport.setPicUserId(logReportDTO.getPicUserId());
+        logReport.setStatusRpt(logReportDTO.getStatusRpt());
+        logReport.setCompanyId(user.get().getCompanyId());
+
+        logNotification.setReportId(reportId);
+        logNotification.setUserId(logReportDTO.getPicUserId());
+        logNotification.setLogNotification("You Have Report by " + user.get().getFullName());
+        logNotificationService.create(logNotification);
+
+        responseData.setStatus(true);
+        responseData.setPayload(logReportService.create(logReport));
+        responseData.setMessage(Collections.singletonList("Berhasil Menyimpan Data"));
+        return ResponseEntity.ok(responseData);
+
+    }
+
 
 
 
