@@ -44,6 +44,9 @@ public class LogReportController {
     private AppUserRepo appUserRepo;
 
     @Autowired
+    private LogReportRepo logReportRepo;
+
+    @Autowired
     private LogNotificationService logNotificationService;
 
 
@@ -103,7 +106,6 @@ public class LogReportController {
 
 
     /// =============== > Start <===============//
-
     //Get Data PIC User Untuk Add Tiket
     @GetMapping("/get-pic")
     @ResponseStatus(value = HttpStatus.CREATED)
@@ -121,7 +123,6 @@ public class LogReportController {
         responseDataList.setPayload(picUser);
         return ResponseEntity.ok(responseDataList);
     }
-
 
     // Add tiket With Notification User
     @PostMapping("add")
@@ -165,7 +166,24 @@ public class LogReportController {
 
     }
 
+    /// Delete Tiket Pada User Atau PIC //
+    @DeleteMapping("delete")
+    public ResponseEntity<ResponseData<LogReport>> deleteTiket (@RequestBody LogReport logReport){
+        ResponseData<LogReport> responseData = new ResponseData<>();
+        Optional<LogReport> logReports = logReportRepo.findById(logReport.getLogReportId());
+        if (logReports.isEmpty()){
+            responseData.setStatus(false);
+            responseData.setPayload(null);
+            responseData.setMessage(Collections.singletonList("Belum Ada Data Tiket yang Anda Tambahkan!"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
 
+        responseData.setStatus(true);
+        responseData.setMessage(Collections.singletonList("Berhasil Menghapus Data"));
+        logReportService.removeOne(logReport.getLogReportId());
+        return ResponseEntity.ok(responseData);
+
+    }
 
 
 

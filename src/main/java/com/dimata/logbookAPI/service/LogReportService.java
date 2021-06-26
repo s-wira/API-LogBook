@@ -91,5 +91,9 @@ public class LogReportService {
         return logReportRepo.findByLogNumber(number);
     }
 
+    public void removeOne(Long id){
+        logReportRepo.deleteById(id);
+    }
+
 
 }
