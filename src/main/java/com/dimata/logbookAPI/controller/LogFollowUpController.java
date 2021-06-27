@@ -2,6 +2,7 @@ package com.dimata.logbookAPI.controller;
 
 import com.dimata.logbookAPI.dto.model.LogReportDTO;
 import com.dimata.logbookAPI.dto.response.ResponseData;
+import com.dimata.logbookAPI.dto.response.ResponseDataList;
 import com.dimata.logbookAPI.model.AppUser;
 import com.dimata.logbookAPI.model.LogFollowUp;
 import com.dimata.logbookAPI.model.LogReport;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collections;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/log-follow-up")
@@ -42,7 +44,16 @@ public class LogFollowUpController {
         responseData.setMessage(Collections.singletonList("Berhasil Menyimpan Data"));
         responseData.setPayload(logFollowUpService.create(data));
         return ResponseEntity.ok(responseData);
+    }
 
+    @PostMapping("get")
+    public ResponseEntity<ResponseDataList<LogFollowUp>> getFollowUp (@RequestBody LogFollowUp logFollowUp){
+        ResponseDataList<LogFollowUp> responseData = new ResponseDataList<>();
+
+        responseData.setStatus(true);
+        responseData.setMessage(Collections.singletonList("Berhasil Mengambil Data"));
+        responseData.setPayload(logFollowUpService.getFollowUp(logFollowUp));
+        return ResponseEntity.ok(responseData);
     }
 
 
