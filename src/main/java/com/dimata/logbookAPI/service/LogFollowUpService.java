@@ -19,15 +19,26 @@ public class LogFollowUpService {
     @Autowired
     private LogFollowUpRepo logFollowUpRepo;
 
+    @Autowired
+    private LogReportRepo logReportRepo;
+
     public LogFollowUp create(LogFollowUp logFollowUp){
         LocalDate localDate = LocalDate.now();
         logFollowUp.setFollowUpId(GenerateOID.generateOID());
         logFollowUp.setStartDateTime(localDate);
         logFollowUp.setEndDateTime(localDate);
 
+        LogReport data = new LogReport();
+        data.setLogReportId(logFollowUp.getLogReportId());
+        data.setStatus(logFollowUp.getFlwUpStatus());
 
+        updateStatusTiket(data);
 
         return logFollowUpRepo.save(logFollowUp);
+    }
+
+    public LogReport updateStatusTiket (LogReport logReport){
+        return logReportRepo.save(logReport);
     }
 
 
