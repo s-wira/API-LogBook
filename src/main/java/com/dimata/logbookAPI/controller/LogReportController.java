@@ -186,5 +186,11 @@ public class LogReportController {
     }
 
 
+    @GetMapping("count/done/{report}")
+    public Long countStatusReport (@PathVariable ("report") String report){
+        return logReportService.countByDone(2,report);
+    }
+
+
 
 }

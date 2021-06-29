@@ -30,7 +30,6 @@ public interface LogReportRepo extends CrudRepository<LogReport,Long> {
 
     List<LogReport> findByStatusRptAndCompanyId (String status, Long companyId);
 
-
-
+    long countByStatusAndStatusRpt(Integer status,String report);
 
 }

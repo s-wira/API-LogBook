@@ -95,5 +95,9 @@ public class LogReportService {
         logReportRepo.deleteById(id);
     }
 
+    public Long countByDone (Integer status, String report){
+        return logReportRepo.countByStatusAndStatusRpt(status,report);
+    }
+
 
 }
