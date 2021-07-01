@@ -111,7 +111,7 @@ public class LogReportController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<ResponseDataList<AppUser>> getPicUser (){
         ResponseDataList<AppUser> responseDataList = new ResponseDataList<>();
-        List<AppUser> picUser = appUserRepo.findByEmployeeId(1L);
+        List<AppUser> picUser = appUserRepo.findByEmployeeId(2L);
         if (picUser.isEmpty()){
             responseDataList.setStatus(false);
             responseDataList.setPayload(null);
@@ -184,7 +184,6 @@ public class LogReportController {
         return ResponseEntity.ok(responseData);
 
     }
-
 
     @GetMapping("count/done/{report}")
     public Long countStatusReport (@PathVariable ("report") String report){

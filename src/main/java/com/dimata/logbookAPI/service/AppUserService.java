@@ -31,6 +31,14 @@ public class AppUserService {
         return appUserRepo.save(appUser);
     }
 
+    public AppUser create2(AppUser appUser){
+        appUser.setUserId(GenerateOID.generateOID());
+        appUser.setUserStatus(0);
+
+        return appUserRepo.save(appUser);
+    }
+
+
 
     public Iterable<AppUser> findAll(){
         return appUserRepo.findAll();

@@ -12,4 +12,7 @@ public interface AppUserRepo extends CrudRepository<AppUser, Long> {
 
     List<AppUser> findByEmployeeId (Long employeeid);
 
+    List<AppUser> findByEmployeeIdAndCompanyId (Long employeeid,Long company);
+
+
 }

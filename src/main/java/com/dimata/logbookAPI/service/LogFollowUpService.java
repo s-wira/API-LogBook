@@ -1,6 +1,8 @@
 package com.dimata.logbookAPI.service;
 
+import com.dimata.logbookAPI.model.AppUser;
 import com.dimata.logbookAPI.model.LogFollowUp;
+import com.dimata.logbookAPI.model.LogNotification;
 import com.dimata.logbookAPI.model.LogReport;
 import com.dimata.logbookAPI.repository.LogFollowUpRepo;
 import com.dimata.logbookAPI.repository.LogReportRepo;
@@ -24,6 +26,13 @@ public class LogFollowUpService {
     @Autowired
     private LogReportRepo logReportRepo;
 
+    @Autowired
+    private LogNotificationService logNotificationService;
+
+    @Autowired
+    private AppUserService appUserService;
+
+
     public LogFollowUp create(LogFollowUp logFollowUp){
         LocalDate localDate = LocalDate.now();
         logFollowUp.setFollowUpId(GenerateOID.generateOID());
@@ -31,7 +40,6 @@ public class LogFollowUpService {
         logFollowUp.setEndDateTime(localDate);
 
         Optional<LogReport> logReport = logReportRepo.findById(logFollowUp.getLogReportId());
-
 
         // Update Status Tiket Tersebut //
         LogReport data = new LogReport();
@@ -51,6 +59,16 @@ public class LogFollowUpService {
 
         updateStatusTiket(data);
 
+        AppUser user = appUserService.findUserId(logFollowUp.getFlwUpByUserId());
+
+        LogNotification logNotification = new LogNotification();
+
+        logNotification.setReportId(logFollowUp.getLogReportId());
+        logNotification.setUserId(logReport.get().getReportByUserId());
+        logNotification.setLogNotification("Your Report has been follow up by :  " + user.getFullName());
+        logNotificationService.create(logNotification);
+
+
         return logFollowUpRepo.save(logFollowUp);
     }
 
@@ -62,6 +80,8 @@ public class LogFollowUpService {
     public LogReport updateStatusTiket (LogReport logReport){
         return logReportRepo.save(logReport);
     }
+
+
 
 
 

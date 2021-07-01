@@ -99,5 +99,9 @@ public class LogReportService {
         return logReportRepo.countByStatusAndStatusRpt(status,report);
     }
 
+    public Long countStatusAdmin (String status, LogReport logReport){
+        return logReportRepo.countByStatusRptAndPicUserId(status, logReport.getPicUserId());
+    }
+
 
 }

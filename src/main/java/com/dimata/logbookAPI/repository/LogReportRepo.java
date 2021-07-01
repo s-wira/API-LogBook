@@ -17,7 +17,6 @@ public interface LogReportRepo extends CrudRepository<LogReport,Long> {
 
     long countByStatusRptAndCompanyId (String status, Long companyId);
 
-
     List<LogReport> findByStatusRpt (String statusRpt);
 
     LogReport findByLogNumber (Integer logNumber);
@@ -31,5 +30,14 @@ public interface LogReportRepo extends CrudRepository<LogReport,Long> {
     List<LogReport> findByStatusRptAndCompanyId (String status, Long companyId);
 
     long countByStatusAndStatusRpt(Integer status,String report);
+
+
+    //SUPER_ADMIN//
+    //Ex:0,1,2 Wait-in-progres-done//
+    List<LogReport> findByStatusAndPicUserId (Integer status,Long picUserId);
+
+    //Ex-status :Bugs,Support,Problem//
+    long countByStatusRptAndPicUserId (String status, Long picUserId);
+    List<LogReport> findByStatusRptAndPicUserId (String status, Long picUserId);
 
 }
