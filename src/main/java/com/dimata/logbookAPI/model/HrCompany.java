@@ -15,6 +15,6 @@ public class HrCompany {
     private Long companyId;
     private String company;
     private String description;
-    private String companyCode;
+    private Long companyCode;
 
 }

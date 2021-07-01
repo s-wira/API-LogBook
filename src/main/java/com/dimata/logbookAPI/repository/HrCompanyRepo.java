@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface HrCompanyRepo extends CrudRepository<HrCompany, Long> {
     Optional<HrCompany> findByCompanyCode (String companyCode);
+
+    Optional<HrCompany> findByCompany (String company);
 }
