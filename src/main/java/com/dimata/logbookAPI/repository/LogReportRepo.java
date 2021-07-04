@@ -40,4 +40,6 @@ public interface LogReportRepo extends CrudRepository<LogReport,Long> {
     long countByStatusRptAndPicUserId (String status, Long picUserId);
     List<LogReport> findByStatusRptAndPicUserId (String status, Long picUserId);
 
+    List<LogReport> findByPicUserId (Long id);
+
 }

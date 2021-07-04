@@ -63,6 +63,23 @@ public class SuperAdminController {
         return ResponseEntity.ok(responseData);
     }
 
+    @PostMapping("/get/follow-up")
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ResponseEntity<ResponseDataList<LogReport>> getFollowUp (@RequestBody LogReportDTO logReportDTO){
+        ResponseDataList<LogReport> responseData = new ResponseDataList<>();
+        List<LogReport> logReport = logReportRepo.findByPicUserId(logReportDTO.getPicUserId());
+        if (logReport.isEmpty()){
+            responseData.setStatus(false);
+            responseData.setPayload(null);
+            responseData.setMessage(Collections.singletonList("Belum Ada Data Tiket yang Anda Tambahkan!"));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
+        responseData.setStatus(true);
+        responseData.setMessage(Collections.singletonList("Berhasil Mengambil Data Tiket"));
+        responseData.setPayload(logReport);
+        return ResponseEntity.ok(responseData);
+    }
+
 
 
 
