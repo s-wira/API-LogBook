@@ -115,6 +115,10 @@ public class HrCompanyController {
         return hrCompanyService.findAll();
     }
 
+    @PostMapping("detail/id")
+    public Optional<HrCompany> detailCompany2 (@RequestBody HrCompany hrCompany){
+        return hrCompanyService.detail(hrCompany.getCompanyId());
 
+    }
 
 }

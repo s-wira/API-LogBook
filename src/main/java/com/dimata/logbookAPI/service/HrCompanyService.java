@@ -1,6 +1,5 @@
 package com.dimata.logbookAPI.service;
 
-import com.dimata.logbookAPI.model.AppUser;
 import com.dimata.logbookAPI.model.HrCompany;
 import com.dimata.logbookAPI.repository.HrCompanyRepo;
 import com.dimata.logbookAPI.utility.GenerateOID;
@@ -38,6 +37,10 @@ public class HrCompanyService {
 
     public Iterable<HrCompany> findAll(){
         return hrCompanyRepo.findAll();
+    }
+
+    public Optional<HrCompany> detail(Long id){
+        return hrCompanyRepo.findById(id);
     }
 
 
