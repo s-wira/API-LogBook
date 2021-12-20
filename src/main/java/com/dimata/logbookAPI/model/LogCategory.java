@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "log_category")
 public class LogCategory {
-
+// ini tutorial belajar 
     @Id
     private Long rptCategoryId;
     private String categoryName;
